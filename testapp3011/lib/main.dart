@@ -23,12 +23,12 @@ class MyHomePage extends StatefulWidget {
   Color c;
   MyHomePage({this.c});
   @override
-  _MyHomePageState createState() => _MyHomePageState(c:c);
+  _MyHomePageState createState() => _MyHomePageState(c:Colors.white);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   Color c;
-  _MyHomePageState({this.c=Colors.white});
+  _MyHomePageState({this.c});
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Material(color: c,child: InkWell(onTap:(){

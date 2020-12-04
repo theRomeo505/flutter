@@ -28,18 +28,49 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Color c;
+
+  List<TextSpan> m=[
+    TextSpan(text:"h"),
+    TextSpan(text:"e"),
+    TextSpan(text:"l"),
+    TextSpan(text:"l"),
+    TextSpan(text:"o"),
+    TextSpan(text:" "),
+    TextSpan(text:"t"),
+    TextSpan(text:"h"),
+    TextSpan(text:"e"),
+    TextSpan(text:"r"),
+    TextSpan(text:"e"),
+  ];
+  List<String> word=["h","e","l","l","o"," ","t","h","e","r","e"];
   _MyHomePageState({this.c});
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Material(color: c,child: InkWell(onTap:(){
       var rnd=new Random();
-      var r=rnd.nextInt(255);
-      var b=rnd.nextInt(255);
-      var g=rnd.nextInt(255);
-      setState(() {
-        c=Color.fromARGB(255, r, g, b);
+      var r=rnd.nextInt(256),r1;
+      var b=rnd.nextInt(256),b1;
+      var g=rnd.nextInt(256),g1;
+      var d=(2*rnd.nextDouble());
+      var o=d>1?d-1:d;
+      List<TextSpan> m1=new List<TextSpan>();
+      for (var i=0;i<11;i++)
+        {
+          r1=rnd.nextInt(256);
+          b1=rnd.nextInt(256);
+          g1=rnd.nextInt(256);
 
+            m1.add(TextSpan(text: word[i],style: TextStyle(color:Color.fromRGBO(r1, g1, b1, 1))));
+        }
+
+      setState(() {
+        //c=Color.fromARGB(255, r, g, b);
+        c=Color.fromRGBO(r, g, b, o);
+        m=m1;
       });
-    },child: Center(child: Text("Hey there",style: TextStyle(color: Color.fromARGB(255, (c.red+128)%256, (c.green+128)%256, (c.blue+128)%256),fontSize: 26),)),)));
+
+    },child: Center(child: RichText(
+    text: TextSpan(children: m)
+    )))));
   }
 }
